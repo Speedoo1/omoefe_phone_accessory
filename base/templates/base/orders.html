@@ -1,0 +1,43 @@
+{% extends "base/navbar.html"%}
+{% load static %}
+{% load humanize %}
+{%block body%}
+ <section id="special-price">
+            <div class="container">
+              <h4 class="font-rubik font-size-20">Orders</h4>
+              <div id="filters" class="button-group text-right font-baloo font-size-16">
+
+
+              </div>
+
+              <div class="grid">
+                {% for i in phone %}
+                <div class="grid-item {{i.brand}} border">
+                 <div class="item py-2" style="width: 200px;">
+                  <div class="product font-rale">
+                    <a href="#"><img src="{{i.image.url}}" alt="product1" class="img-fluid"></a>
+                    <div class="text-center">
+                      <h6>{{i.name}}</h6>
+                      <div class="rating text-warning font-size-12">
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="far fa-star"></i></span>
+                      </div>
+                      <div class="price py-2">
+                        <span>&#8358; {{i.current_price|intcomma}}</span>
+                      </div>
+                      <a href="{% url 'base:product' i.id %}"  class="btn btn-warning font-size-12">View More</a>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                {%endfor%}
+              </div>
+
+            </div>
+          </section>
+
+
+{%endblock%}
