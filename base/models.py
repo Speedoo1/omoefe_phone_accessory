@@ -82,4 +82,5 @@ class orders(models.Model):
     total_price = models.IntegerField(null=True, blank=True)
     brand = models.CharField(max_length=500)
     quantity = models.IntegerField()
+    # created=models.DateTimeField(auto_now_add=True,blank=True)
     status = models.CharField(max_length=300, choices=CHOICES)

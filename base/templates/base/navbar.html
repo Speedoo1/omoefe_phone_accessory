@@ -37,7 +37,7 @@
 
 
 
-                    <a href="#" class="px-3 border-right text-dark">Orders (0)</a>
+                    <a href="{% url 'base:orders'%}" class="px-3 border-right text-dark">Orders (0)</a>
                 </div>
 
             </div>
@@ -54,7 +54,7 @@
                       <a class="nav-link" href="{% url 'base:index'%}">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Profile</a>
+                      <a class="nav-link" href="{% url 'base:profile'%}">Profile</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Orders <i class="fas fa-chevron-down"></i></a>

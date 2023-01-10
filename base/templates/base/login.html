@@ -68,7 +68,8 @@ span.psw {
   }
 }
 </style>
-
+<br>
+<div class="container shadow">
 <form action="{% url 'base:login' %}" class="forms" method="post">
   {% csrf_token %}
   <div class="imgcontainer">
@@ -88,10 +89,10 @@ span.psw {
 
                   {%endfor%}
     <label for="uname"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" id="uname"  name="email" required>
+    <input type="text" class="w-100" style="padding:20px 10px;" placeholder="Enter Email" id="uname"  name="email" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" id="psw" name="password" required>
+    <input type="password" class="w-100" style="padding:20px 10px;" placeholder="Enter Password" id="psw" name="password" required>
 
     <button type="submit" class="btn btn-success mt-3" >Login</button><br/><br/>
 
@@ -102,8 +103,8 @@ span.psw {
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>
 </form>
-
-
+</div>
+<br>
 
 </div>
 

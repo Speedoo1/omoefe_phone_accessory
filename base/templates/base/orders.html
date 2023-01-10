@@ -4,40 +4,48 @@
 {%block body%}
  <section id="special-price">
             <div class="container">
-              <h4 class="font-rubik font-size-20">Orders</h4>
-              <div id="filters" class="button-group text-right font-baloo font-size-16">
-
-
-              </div>
-
-              <div class="grid">
-                {% for i in phone %}
-                <div class="grid-item {{i.brand}} border">
-                 <div class="item py-2" style="width: 200px;">
-                  <div class="product font-rale">
-                    <a href="#"><img src="{{i.image.url}}" alt="product1" class="img-fluid"></a>
-                    <div class="text-center">
-                      <h6>{{i.name}}</h6>
-                      <div class="rating text-warning font-size-12">
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                      </div>
-                      <div class="price py-2">
-                        <span>&#8358; {{i.current_price|intcomma}}</span>
-                      </div>
-                      <a href="{% url 'base:product' i.id %}"  class="btn btn-warning font-size-12">View More</a>
-                    </div>
-                  </div>
+                {% if order%}
+                <div class="text-center">
+                     <h3 class="pt-5">Total Goods Bought </h3>
                 </div>
-                </div>
-                {%endfor%}
-              </div>
 
+                <br>
+
+               <table border="1" class="w-100" cellpadding="">
+
+              <tr>
+                  <th><h5>&nbsp;Product Image &nbsp;</h5></th>
+                  <th><h5>&nbsp;Product Name&nbsp;</h5></th>
+                  <th><h5>&nbsp;Price&nbsp;</h5></th>
+                  <th><h5>&nbsp;Qty&nbsp;</h5></th>
+                  <th><h5>&nbsp;Status&nbsp;</h5></th>
+                   <th><h5>&nbsp;Brand&nbsp;</h5></th>
+                  <th><h5>&nbsp;Date&nbsp;</h5></th>
+                   <th><h5>&nbsp;Payment&nbsp;</h5></th>
+
+
+              </tr>
+              {%for i in order  %}
+              <tr>
+                  <td><img src="{{i.image.url}}" width="150px" height=""></td>
+
+                   <td style="width:150px " class="pl-1">{{i.name}} &nbsp;</td>
+                    <td>&nbsp;{{i.total_price|intcomma}}&nbsp;</td>
+                     <td>&nbsp;{{i.quantity}}&nbsp;</td>
+                     <td>&nbsp;{{i.status}}&nbsp;</td>
+                     <td>&nbsp;{{i.brand}}&nbsp;</td>
+
+              </tr>
+              {%endfor%}
+
+          </table>
+                {%else%}
+                <h3>OOpp you haven't bought any goods from us kindly click on the button below to start shopping </h3>
+                <a href="{% url 'base:index'%}" class="btn btn-success">Start Shopping</a>
+                {%endif%}
             </div>
           </section>
+<br>
 
 
 {%endblock%}

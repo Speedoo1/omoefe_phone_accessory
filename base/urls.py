@@ -18,6 +18,8 @@ urlpatterns = [
     path('login/', views.loging, name='login'),
     path('logout/', views.logouting, name='logout'),
     path('signup/', views.signup, name='signup'),
-    path('orders/', views.orders, name='orders'),
-    path('payment_successful/', views.payment_successful, name='successful')
+    path('orders/', views.orderss, name='orders'),
+    path('payment_successful/', views.payment_successful, name='successful'),
+    path('your_profile/', views.profile, name='profile'),
+    path('updateprofile/', views.updateprofile, name='updateprofile')
 ]

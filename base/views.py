@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import make_password
 
 from django.shortcuts import render, redirect
 
-from base.models import phone, brand, cart, User
+from base.models import phone, brand, cart, User, orders
 
 
 def index(request):
@@ -139,8 +139,10 @@ def signup(request):
     return render(request, 'base/signup.html')
 
 
-def orders(request):
-    return render(request, 'base/orders.html')
+def orderss(request):
+    ord = orders.objects.all()
+    context = {'order': ord}
+    return render(request, 'base/orders.html', context)
 
 
 def logouting(request):
@@ -150,6 +152,40 @@ def logouting(request):
 
 def payment_successful(request):
     car = request.user.cart_set.all()
+    for i in car:
+        addoder = request.user.orders_set.create(name=i.name, status='Pending', brand=i.brand, image=i.image,
+                                                 quantity=i.quantity, total_price=i.current_price)
+        addoder.save()
     messages.success(request, 'Your payment as been made and your goods will be delivered to you as soon as possible')
     car.delete()
     return redirect('base:index')
+
+
+@login_required(login_url='base:login')
+def profile(request):
+    list_cart = request.user.cart_set.all().count
+    pro = User.objects.get(email=request.user)
+    context = {'profile': pro, 'cart_total': list_cart}
+    return render(request, 'base/profile.html', context)
+
+
+def updateprofile(request):
+    list_cart = request.user.cart_set.all().count
+    pro = User.objects.get(email=request.user)
+    if request.method == 'POST':
+        name = request.POST.get('username')
+        mail = request.POST.get('email')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        phone = request.POST.get('phone')
+        pro.email = mail
+        pro.gender = gender
+        pro.address = address
+        pro.username = name
+        pro.phone = phone
+
+        pro.save()
+        messages.success(request, 'Profile Updated successfully')
+        return redirect('base:profile')
+    context = {'profile': pro, 'cart_total': list_cart}
+    return render(request, 'base/updateprofile.html', context)

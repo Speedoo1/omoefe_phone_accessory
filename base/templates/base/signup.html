@@ -68,7 +68,8 @@ span.psw {
   }
 }
 </style>
-
+<br>
+<div class="container shadow">
 <form action="{% url 'base:signup' %}" class="forms" method="post">
   {% csrf_token %}
   <div class="imgcontainer">
@@ -87,23 +88,23 @@ span.psw {
                    </div>
 
                   {%endfor%}
-    <label ><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
-     <label ><b>Full Name</b></label>
-    <input type="text" placeholder="Enter Full Name"   name="username" required>
-     <label ><b>Home Address</b></label>
-    <input type="text" placeholder="Enter Address"  name="address" required>
-       <label ><b>Phone number</b></label>
-    <input type="text" placeholder="Phone number"  name="number" required>
-       <label ><b>Select Gender</b></label>
-      <select style="width:100%; margin: 8px 0px;  padding: 12px 20px;" name="gender">
+    <label  ><b>Email</b></label>
+    <input type="text" class="w-100" style="padding:20px 10px;" placeholder="Enter Email" name="email" required>
+     <label class="pt-5"><b>Full Name</b></label>
+    <input type="text" class="w-100" style="padding:20px 10px;" placeholder="Enter Full Name"   name="username" required>
+     <label class="pt-5"><b>Home Address</b></label>
+    <input type="text" class="w-100" style="padding:20px 10px;" placeholder="Enter Address"  name="address" required>
+       <label class="pt-5"><b>Phone number</b></label>
+    <input type="text" class="w-100" style="padding:20px 10px;" placeholder="Phone number"  name="number" required>
+       <label  class="pt-5"><b>Select Gender</b></label>
+      <select class="w-100" style="padding:20px 10px;" name="gender">
           <option value="Male">Male</option>
           <option value="Female">Female</option>
       </select><br>
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" id="psw" name="password" required>
- <label for="rpsw"><b>Repeat Password</b></label>
-    <input type="password" placeholder="confirm Password" id="rpsw" name="confirm_password" required>
+    <label class="pt-5" for="psw"><b>Password</b></label>
+    <input type="password" class="w-100" style="padding:20px 10px;" placeholder="Enter Password" id="psw" name="password" required>
+ <label class="pt-5" for="rpsw"><b>Repeat Password</b></label>
+    <input type="password" class="w-100" style="padding:20px 10px;" placeholder="confirm Password" id="rpsw" name="confirm_password" required>
 
     <button type="submit" class="btn btn-success mt-3" >Create Account</button><br/><br/>
 
@@ -114,7 +115,8 @@ span.psw {
 <!--    <span class="psw">Forgot <a href="#">password?</a></span>-->
   </div>
 </form>
-
+</div>
+<br/>
 
 
 </div>

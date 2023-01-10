@@ -1,0 +1,68 @@
+{% extends 'base/navbar.html'%}
+
+{% block body%}
+<br>
+          <div class="container  airtime-color shadow">
+
+            <form action="" autocomplete="off" method="post">
+              {% csrf_token %}
+              <div class="container">
+
+
+
+
+                <h3 class="text-center pt-5">Your Profile</h3><br>
+
+
+                <hr><br>
+                  {% for message in messages%}
+
+                   <div class="alert {{message.tags}} alert-dismissible" role="alert">
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="True">&times;</span>
+                     </button>
+                     &nbsp;{{message}}
+
+                 </div>
+                  {%endfor%}
+                <label ><b>Username:</b></label><br>
+                <input type="text" disabled class="w-100" style="padding:20px 10px;" autocomplete="off" placeholder="Enter your Username" name="username" id="username"  value="{{profile.username}}" required><br>
+
+                <label class="pt-5"><b>Email:</b></label><br>
+                <input type="email" disabled class="w-100" style="padding:20px 10px;" autocomplete="off" placeholder="Enter your Email Address" name="email" id="email" value="{{profile.email}}"  required><br>
+                   <label class="pt-5"><b>Phone Number:</b></label><br>
+                <input type="tel" disabled class="w-100" style="padding:20px 10px;" autocomplete="off" placeholder="" name="number" id="phone"  value="{{profile.phone}}" required><br>
+                 <label class="pt-5"><b>Delivery Address:</b></label><br>
+                <input type="tel" disabled class="w-100" style="padding:20px 10px;" autocomplete="off" placeholder="" name="number" id="address"  value="{{profile.address}}" required><br>
+                 <label class="pt-5"><b>Gender:</b></label><br>
+                <input type="tel" disabled class="w-100" style="padding:20px 10px;" autocomplete="off" placeholder="" name="number" id="gender"  value="{{profile.gender}}" required><br>
+
+                 <br/>
+
+
+                <hr>
+
+
+
+                <a href="{% url 'base:updateprofile'%}" class="w-100 btn btn-success">UPDATE</a>
+              </div>
+
+
+            </form><br/>
+
+
+
+
+          </div>
+<br>
+
+
+
+
+
+<script>
+   if(window.history.replaceState){
+    window.history.replaceState(null,null,window.location.href);
+    }
+</script>
+{%endblock%}
