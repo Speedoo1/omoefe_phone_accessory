@@ -55,12 +55,13 @@ def add_cart(request, pk):
 @login_required(login_url='base:login')
 def carts(request):
     lists = request.user.cart_set.all()
+    pro = User.objects.get(email=request.user)
     new_product = phone.objects.all().order_by('-created')
     list_cart = request.user.cart_set.all().count
     subtotal = 0
     for i in lists:
         subtotal = subtotal + int(i.current_price)
-    context = {'cart': lists, 'subtotal': subtotal, 'cart_total': list_cart, 'phone': new_product}
+    context = {'cart': lists, 'profile': pro, 'subtotal': subtotal, 'cart_total': list_cart, 'phone': new_product}
     return render(request, 'base/cart.html', context)
 
 
