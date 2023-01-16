@@ -25,14 +25,17 @@ def index(request):
 
 def product_page(request, pk):
     single_product = phone.objects.get(id=pk)
-    list_cart = request.user.cart_set.all().count
+    try:
+        list_cart = request.user.cart_set.all().count
+    except:
+        list_cart = 0
     top_sale = phone.objects.all().order_by('-Total_sold')
     context = {'single_product': single_product, 'top_sale': top_sale, 'cart_total': list_cart}
 
     return render(request, 'base/product.html', context)
 
 
-@login_required(login_url=' base: login')
+@login_required(login_url='base:login')
 def add_cart(request, pk):
     single_product = phone.objects.get(id=pk)
     price = single_product.current_price * 1
@@ -140,8 +143,9 @@ def signup(request):
     return render(request, 'base/signup.html')
 
 
+@login_required(login_url='base:login')
 def orderss(request):
-    ord = orders.objects.all()
+    ord = request.user.orders_set.all()
     context = {'order': ord}
     return render(request, 'base/orders.html', context)
 
